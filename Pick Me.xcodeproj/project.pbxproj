@@ -13,6 +13,7 @@
 		5431A0B6240ABC7500CCE03A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5431A0B5240ABC7500CCE03A /* Assets.xcassets */; };
 		5431A0B9240ABC7500CCE03A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5431A0B7240ABC7500CCE03A /* LaunchScreen.storyboard */; };
 		5431A0C4240ABC7500CCE03A /* Pick_MeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5431A0C3240ABC7500CCE03A /* Pick_MeTests.swift */; };
+		54B7C6552677CF1B008E0DCE /* TouchableViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54B7C6542677CF1B008E0DCE /* TouchableViewTests.swift */; };
 		54D1AD8724141FC200EC3AD4 /* TouchableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54D1AD8624141FC200EC3AD4 /* TouchableView.swift */; };
 		54D1AD8B241420EC00EC3AD4 /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54D1AD8A241420EC00EC3AD4 /* ColorExtension.swift */; };
 		54D1AD8D2414215700EC3AD4 /* SpotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54D1AD8C2414215700EC3AD4 /* SpotView.swift */; };
@@ -39,6 +40,7 @@
 		5431A0BF240ABC7500CCE03A /* Pick MeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Pick MeTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5431A0C3240ABC7500CCE03A /* Pick_MeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pick_MeTests.swift; sourceTree = "<group>"; };
 		5431A0C5240ABC7500CCE03A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		54B7C6542677CF1B008E0DCE /* TouchableViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouchableViewTests.swift; sourceTree = "<group>"; };
 		54D1AD8624141FC200EC3AD4 /* TouchableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouchableView.swift; sourceTree = "<group>"; };
 		54D1AD8A241420EC00EC3AD4 /* ColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtension.swift; sourceTree = "<group>"; };
 		54D1AD8C2414215700EC3AD4 /* SpotView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotView.swift; sourceTree = "<group>"; };
@@ -97,10 +99,19 @@
 		5431A0C2240ABC7500CCE03A /* Pick MeTests */ = {
 			isa = PBXGroup;
 			children = (
+				54B7C6532677CEE2008E0DCE /* Components */,
 				5431A0C3240ABC7500CCE03A /* Pick_MeTests.swift */,
 				5431A0C5240ABC7500CCE03A /* Info.plist */,
 			);
 			path = "Pick MeTests";
+			sourceTree = "<group>";
+		};
+		54B7C6532677CEE2008E0DCE /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				54B7C6542677CF1B008E0DCE /* TouchableViewTests.swift */,
+			);
+			path = Components;
 			sourceTree = "<group>";
 		};
 		54D1AD8824141FFC00EC3AD4 /* Components */ = {
@@ -234,6 +245,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				54B7C6552677CF1B008E0DCE /* TouchableViewTests.swift in Sources */,
 				5431A0C4240ABC7500CCE03A /* Pick_MeTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

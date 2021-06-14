@@ -2,8 +2,10 @@ import Foundation
 import UIKit
 
 class TouchableView: UIView {
-    var touchViews = [UITouch:TouchSpotView]()
-    var seconds = 4
+    
+    private let countdownLength = 4
+    private var touchViews = [UITouch:TouchSpotView]()
+    private var seconds = 0
     var timer: Timer?
     
     override init(frame: CGRect) {
@@ -18,22 +20,22 @@ class TouchableView: UIView {
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         for touch in touches {
-            createViewForTouch(touch: touch)
-        }
-        guard let timer = timer else {
-            seconds = 4
-            self.timer = Timer.scheduledTimer(timeInterval: 0.4, target: self, selector: #selector(update), userInfo: nil, repeats: true)
-            return }
-        if timer.isValid {
-            seconds = 4
-        } else {
-            seconds = 4
-            self.timer = Timer.scheduledTimer(timeInterval: 0.4, target: self, selector: #selector(update), userInfo: nil, repeats: true)
+            createView(for: touch)
         }
         
+        seconds = countdownLength
+        
+        guard let timer = timer, timer.isValid else {
+            self.timer = Timer.scheduledTimer(timeInterval: 0.4,
+                                              target: self,
+                                              selector: #selector(update),
+                                              userInfo: nil,
+                                              repeats: true)
+            return }
     }
     
-    @objc func update() {
+    @objc
+    private func update() {
         if(seconds == 0) {
             print("DONE!")
             for touch in touchViews {
@@ -70,18 +72,12 @@ class TouchableView: UIView {
         }
     }
     
-    func createViewForTouch( touch : UITouch ) {
-        let newView = TouchSpotView()
-        newView.bounds = CGRect(x: 0, y: 0, width: 3, height: 3)
-        newView.center = touch.location(in: self)
+    private func createView(for touch: UITouch) {
+        let newView = TouchSpotView(diameter: 100,
+                                    center: touch.location(in: self))
         
-        // Add the view and animate it to a new size.
         addSubview(newView)
-        UIView.animate(withDuration: 0.2) {
-            newView.bounds.size = CGSize(width: 100, height: 100)
-        }
-        
-        // Save the views internally
+        newView.animateEntry()
         touchViews[touch] = newView
     }
     
