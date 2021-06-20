@@ -8,12 +8,12 @@
 @testable import Pick_Me
 import XCTest
 
-class TouchableViewTests: XCTestCase {
+class ConcreteTouchableViewTests: XCTestCase {
 
-    var sut: TouchableView!
+    var sut: ConcreteTouchableView!
     
     override func setUp() {
-        sut = TouchableView(frame: CGRect(origin: .zero,
+        sut = ConcreteTouchableView(frame: CGRect(origin: .zero,
                                           size: CGSize(width: 100, height: 100)))
     }
 
