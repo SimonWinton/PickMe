@@ -1,12 +1,18 @@
 import Foundation
 import UIKit
 
-class TouchableView: UIView {
+protocol TouchableView: UIView {
+    func reset()
+    
+}
+
+class ConcreteTouchableView: UIView, TouchableView {
     
     private let countdownLength = 4
     private var touchViews = [UITouch:TouchSpotView]()
     private var seconds = 0
     var timer: Timer?
+    var delegate: CountdownDelegate?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -31,20 +37,18 @@ class TouchableView: UIView {
                                               selector: #selector(update),
                                               userInfo: nil,
                                               repeats: true)
+            backgroundColor = .white
             return }
     }
     
     @objc
     private func update() {
+        seconds -= 1
         if(seconds == 0) {
-            print("DONE!")
-            for touch in touchViews {
-                touch.value.removeFromSuperview()
-            }
-            timer?.invalidate()
+            getWinner()
+            delegate?.countdownDidUpdate(to: nil)
         } else {
-            seconds -= 1
-            print(seconds)
+            delegate?.countdownDidUpdate(to: seconds)
         }
     }
     
@@ -62,7 +66,7 @@ class TouchableView: UIView {
             removeViewForTouch(touch: touch)
         }
         if touchViews.isEmpty {
-            timer?.invalidate()
+            reset()
         }
     }
     
@@ -85,10 +89,42 @@ class TouchableView: UIView {
         return touchViews[touch]
     }
     
-    func removeViewForTouch (touch : UITouch ) {
+    func removeViewForTouch (touch: UITouch) {
         if let view = touchViews[touch] {
             view.removeFromSuperview()
             touchViews.removeValue(forKey: touch)
         }
     }
+    
+    func getWinner() {
+        timer?.invalidate()
+        guard let winner = touchViews.randomElement() else { return }
+        backgroundColor = winner.value.backgroundColor
+        for touch in touchViews {
+            if touch != winner {
+                touch.value.removeFromSuperview()
+            }
+            else {
+                touch.value.backgroundColor = .white
+            }
+        }
+    }
+    
+    func reset() {
+        for touch in touchViews {
+            removeViewForTouch(touch: touch.key)
+        }
+        backgroundColor = .white
+        delegate?.countdownDidUpdate(to: nil)
+        timer?.invalidate()
+    }
+    
+    func getOrder() {}
+    
+    func getUkotoa() {
+//        colours to place
+//        inbetween colours
+    }
+    
+    func over6Spinner() {}
 }
